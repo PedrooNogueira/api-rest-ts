@@ -1,14 +1,13 @@
 import express from 'express';
 
+import { router } from './routes';
 
 const server = express();
 // Nesse meio, toda a config do servidor
 
-server.get('/', (_, res) => {
-  
-  return res.send('hello-world');
-});
+server.use(express.json());
+
+server.use(router);
 
 
 export { server };
-
