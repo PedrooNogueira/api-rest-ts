@@ -3,11 +3,13 @@ import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
 
 import { validation } from '../../shared/middleware';
+
+
 interface ICidade {
   nome: string;
 }
 export const createValidation = validation((getSchema) => ({
-  query: getSchema<ICidade>(yup.object().shape({
+  body: getSchema<ICidade>(yup.object().shape({
     nome: yup.string().required().min(3),
   })),
 }));
@@ -17,5 +19,5 @@ export const createValidation = validation((getSchema) => ({
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
   console.log(req.body);
 
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('não implementado');
+  return res.status(StatusCodes.CREATED).json(1);
 };
